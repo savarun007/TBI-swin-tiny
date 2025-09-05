@@ -25,11 +25,7 @@ This repository contains the complete code and methodology for developing and ev
 
 ### Step 2: Data Preparation
 
-1.  **Generate Synthetic Data:** This creates a new `data/synthetic` folder with 10,000 images per class.
-    ```bash
-    python -m src.data_utils.generate_synthetic_data --raw_data_dir data/raw
-    ```
-2.  **Split the Dataset:** This takes the balanced data and splits it into `train`, `val`, and `test` sets inside `data/processed`.
+1.  **Split the Dataset:** This takes the balanced data and splits it into `train`, `val`, and `test` sets inside `data/processed`.
     ```bash
     python -m src.data_utils.prepare_dataset --synthetic_data_dir data/synthetic
     ```
