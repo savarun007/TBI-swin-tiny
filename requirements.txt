@@ -1,0 +1,14 @@
+torch
+torchvision
+timm
+albumentations
+opencv-python-headless
+scikit-learn
+pandas
+numpy
+matplotlib
+seaborn
+scipy
+statsmodels
+grad-cam
+graphviz
