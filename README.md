@@ -38,4 +38,4 @@ This repository contains the complete code and methodology for developing and ev
 
 Train your desired model. For the best-performing `Swin Transformer`:
 ```bash
-python -m src.engine.train --model_name swin_tiny --epochs 40 --image_size 224 --learning_rate 1e-4 --batch_size 32 --weight_decay 0.05
+python -m src.engine.train --model_name swin_tiny --epochs 80 --image_size 224 --learning_rate 1e-4 --batch_size 32 --weight_decay 0.05
