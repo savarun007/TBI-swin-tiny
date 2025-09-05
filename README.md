@@ -20,18 +20,41 @@ This repository contains the complete code and methodology for developing and ev
     ```bash
     pip install -r requirements.txt
     ```
-3.  **Install PyTorch for GPU:** Go to the [official PyTorch website](https://pytorch.org/get-started/locally/) and install the version of PyTorch that matches your system's CUDA version. This is critical for GPU training.
+3.  **Install PyTorch for GPU:** Go to the [official PyTorch website](https://pytorch.org/get-started/locally/) and install the version of PyTorch that matches your system's CUDA version.
 4.  **Place Data:** Put your original, unbalanced dataset folders (e.g., `epidural`, `ne`) inside a `data/raw/` directory.
 
 ### Step 2: Data Preparation
 
-1.  **Split the Dataset:** This takes the balanced data and splits it into `train`, `val`, and `test` sets inside `data/processed`.
+1.  **Generate Synthetic Data:**
+    ```bash
+    python -m src.data_utils.generate_synthetic_data --raw_data_dir data/raw
+    ```
+2.  **Split the Dataset:**
     ```bash
     python -m src.data_utils.prepare_dataset --synthetic_data_dir data/synthetic
     ```
 
 ### Step 3: Model Training
 
-Train your desired model. For the best-performing `Swin Transformer`:
+Train the `Swin Transformer`:
 ```bash
 python -m src.engine.train --model_name swin_tiny --epochs 80 --image_size 224 --learning_rate 1e-4 --batch_size 32 --weight_decay 0.05
+
+
+### Step 4: Evaluation and Analysis
+
+1. **Generate Performance Report:**
+    ```bash
+    python -m src.engine.evaluate --model_name swin_tiny --image_size 224
+    ```
+
+2. **Run Statistical Analysis and Generate Figures:**  
+   *(Requires `efficientnetv2_s` model to be trained and evaluated first for comparison)*  
+    ```bash
+    python -m src.engine.statistical_comparison --model1 swin_tiny --model2 efficientnetv2_s
+    ```
+
+3. **Generate XAI Visualizations:**
+    ```bash
+    python -m src.xai.generate_xai_comparison --model_name swin_tiny --image_size 224
+    ```
